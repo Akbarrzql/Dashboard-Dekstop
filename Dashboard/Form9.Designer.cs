@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btn_keluar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,6 +49,9 @@
             this.brn_edit = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_display = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,16 +67,6 @@
             this.panel1.Size = new System.Drawing.Size(1121, 125);
             this.panel1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(46, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(364, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Aplikasi Input Data Siswa";
-            // 
             // btn_keluar
             // 
             this.btn_keluar.BackColor = System.Drawing.Color.Red;
@@ -85,6 +78,16 @@
             this.btn_keluar.Text = "Keluar";
             this.btn_keluar.UseVisualStyleBackColor = false;
             this.btn_keluar.Click += new System.EventHandler(this.btn_keluar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(46, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(364, 41);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Aplikasi Input Data Siswa";
             // 
             // label2
             // 
@@ -221,6 +224,7 @@
             this.btn_delete.TabIndex = 15;
             this.btn_delete.Text = "Delete";
             this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // brn_edit
             // 
@@ -230,11 +234,12 @@
             this.brn_edit.TabIndex = 16;
             this.brn_edit.Text = "Edit";
             this.brn_edit.UseVisualStyleBackColor = true;
+            this.brn_edit.Click += new System.EventHandler(this.brn_edit_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(98, 565);
+            this.dataGridView1.Location = new System.Drawing.Point(98, 601);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
@@ -251,11 +256,41 @@
             this.btn_display.UseVisualStyleBackColor = true;
             this.btn_display.Click += new System.EventHandler(this.btn_display_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(951, 438);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Print PDF";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(749, 515);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(144, 29);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Cari Nama Siswa";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(683, 482);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(272, 27);
+            this.textBox1.TabIndex = 21;
+            // 
             // Form9
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1121, 775);
+            this.ClientSize = new System.Drawing.Size(1121, 865);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_display);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.brn_edit);
@@ -310,5 +345,8 @@
         private Button brn_edit;
         private DataGridView dataGridView1;
         private Button btn_display;
+        private Button button1;
+        private Button button2;
+        private TextBox textBox1;
     }
 }

@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using DGVPrinterHelper;
 
 namespace Dashboard
 {
     public partial class Form9 : Form
     {
-        SqlConnection koneksi = new SqlConnection(@"Data Source=LAPTOP-S2EF8PUD\SQLEXPRESS01;Initial Catalog=db_test;Integrated Security=True");
+        SqlConnection koneksi = new SqlConnection(@"Data Source=LAPTOP-P1DI6HBL\SQLEXPRESS;Initial Catalog=db_test;Integrated Security=True");
         public Form9()
         {
             InitializeComponent();
@@ -102,6 +103,65 @@ namespace Dashboard
         private void btn_display_Click(object sender, EventArgs e)
         {
             display_data();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            koneksi.Open();
+            SqlCommand cmd = koneksi.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "delete from [Table_Siswa] where NIS = '" + tb_nis.Text + "'";
+            cmd.ExecuteNonQuery();
+            koneksi.Close();
+            tb_nis.Text = "";
+            display_data();
+            MessageBox.Show("Data Delete Sukses");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            koneksi.Open();
+            SqlCommand cmd = koneksi.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "select * from [Table_Siswa] where namasiswa= '" + textBox1.Text + "' ";
+            DataTable dt = new DataTable();
+            SqlDataAdapter datap = new SqlDataAdapter(cmd);
+            datap.Fill(dt);
+            dataGridView1.DataSource = dt;
+            koneksi.Close();
+            textBox1.Text = "";
+        }
+
+        private void brn_edit_Click(object sender, EventArgs e)
+        {
+            byte[] images = null;
+            FileStream stream = new FileStream(imglocation, FileMode.Open, FileAccess.Read);
+            BinaryReader brs = new BinaryReader(stream);
+            images = brs.ReadBytes((int)stream.Length);
+            koneksi.Open();
+            SqlCommand cmd = koneksi.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update [Table_Siswa] set NIS = '" + this.tb_nis.Text + "', namasiswa = '" + this.tb_nama.Text + "' , kelas = '" + this.tb_kelas.Text + "' , jurusan = '" + this.tb_jurusan.Text + "' , alamatrumah = '" + this.tb_alamat.Text + "', foto =@images where NIS = '" + this.tb_nis.Text + "' ";
+            cmd.Parameters.Add(new SqlParameter("@images", images));
+            cmd.ExecuteNonQuery();
+            koneksi.Close();
+            display_data();
+            MessageBox.Show("Data Edit Sukses");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Data Expert";
+            printer.SubTitle = string.Format("Date: {0}", DateTime.Now.Date);
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Akbar Rizqullah Putra Susanto";
+            printer.FooterSpacing = 15;
+            printer.PrintDataGridView(dataGridView1);
         }
     }
 }
